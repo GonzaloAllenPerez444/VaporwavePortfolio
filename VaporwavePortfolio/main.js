@@ -25,7 +25,7 @@ const gridTexture = textureLoader.load('./grid.png');
 //const geometry = new THREE.PlaneGeometry(1, 2,24,24);
 //const geometry = new TorusGeometry(10,3,16,100);
 const geometry = new PlaneGeometry(1,2);
-const material = new THREE.MeshBasicMaterial({
+const material = new THREE.MeshStandardMaterial({
   color:  0xFF6347,
   map: gridTexture
 });
@@ -50,6 +50,12 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.x = 0;
 camera.position.y = 0.06;
 camera.position.z = 1.1;
+
+
+//LIGHT
+const ambientLight = new THREE.AmbientLight("#ffffff", 10);
+scene.add(ambientLight);
+
 
 //CONTROLS (Eventually)
 const controls = new OrbitControls(camera, canvas);
