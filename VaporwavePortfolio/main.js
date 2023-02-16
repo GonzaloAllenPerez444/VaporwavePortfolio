@@ -1,6 +1,8 @@
 import './style.css';
 
 import * as THREE from 'three';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 
 const scene = new THREE.Scene();
 
@@ -28,7 +30,7 @@ plane.position.z = 0.15;
 
 scene.add(plane);
 
-
+//CAMERA
 const camera = new THREE.PerspectiveCamera(
 
    75,//field of view
@@ -36,6 +38,10 @@ const camera = new THREE.PerspectiveCamera(
    0.1, //these last two are near plane and far plane
    20
 );
+
+
+
+
 
 const renderer = new THREE.WebGL1Renderer({
   canvas:document.querySelector('#bg'),
