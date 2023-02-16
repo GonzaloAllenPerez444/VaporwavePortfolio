@@ -60,7 +60,9 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 const tick = () => {
   // Update controls
   controls.update();
- //geometry.rotation.x += 0.01;
+   
+  geometry.rotateX(0.01);
+
   // Update the rendered scene
   renderer.render(scene, camera);
 
