@@ -2,11 +2,12 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { TorusGeometry } from 'three';
 
 
 const scene = new THREE.Scene();
 
-
+const canvas = document.querySelector('#bg');
 // Sizes
 const sizes = {
   width: window.innerWidth,
@@ -17,7 +18,8 @@ const sizes = {
 // Objects
 
 
-const geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
+//const geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
+const geometry = new TorusGeometry(10,3,16,100);
 const material = new THREE.MeshBasicMaterial({
   color:  0xFF6347,
 });
@@ -35,7 +37,7 @@ const camera = new THREE.PerspectiveCamera(
 
    75,//field of view
    sizes.width / sizes.height, //aspect ratio
-   0.1, //these last two are near plane and far plane
+   0.01, //these last two are near plane and far plane
    20
 );
 
@@ -46,7 +48,7 @@ controls.enableDamping = true;
 */
 
 const renderer = new THREE.WebGL1Renderer({
-  canvas:document.querySelector('#bg'),
+  canvas:canvas,
   
 })
 
@@ -55,11 +57,17 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //camera.position.setZ(30);
 
+const tick = () => {
+  // Update controls
+  //controls.update();
 
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene,camera);
+  // Update the rendered scene
+  renderer.render(scene, camera);
+
+  // Call tick again on the next frame
+  window.requestAnimationFrame(tick);
   
-}
+};
 
-animate()
+// Calling tick will initiate the rendering of the scene
+tick();
