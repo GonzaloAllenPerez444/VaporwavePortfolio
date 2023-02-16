@@ -65,7 +65,7 @@ const tick = () => {
   // Update controls
   controls.update();
    
-  //geometry.rotateX(0.01);
+  geometry.rotateZ(0.01);
 
   // Update the rendered scene
   renderer.render(scene, camera);
