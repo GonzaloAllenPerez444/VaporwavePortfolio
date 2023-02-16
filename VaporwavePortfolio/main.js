@@ -19,7 +19,7 @@ const sizes = {
 
 const geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
 const material = new THREE.MeshBasicMaterial({
-  color:  0xffffff,
+  color:  0xFF6347,
 });
 
 
@@ -39,23 +39,27 @@ const camera = new THREE.PerspectiveCamera(
    20
 );
 
-
-
-
+/*
+//CONTROLS (Eventually)
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+*/
 
 const renderer = new THREE.WebGL1Renderer({
   canvas:document.querySelector('#bg'),
+  
 })
 
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-camera.position.setZ(30);
+//camera.position.setZ(30);
 
 
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene,camera);
+  
 }
 
 animate()
