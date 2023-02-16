@@ -59,7 +59,21 @@ const renderer = new THREE.WebGL1Renderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-//camera.position.setZ(30);
+// Event listener to handle screen resize
+window.addEventListener("resize", () => {
+  // Update sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // Update camera's aspect ratio and projection matrix
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height);
+  // Note: We set the pixel ratio of the renderer to at most 2
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
 
 const tick = () => {
   // Update controls
