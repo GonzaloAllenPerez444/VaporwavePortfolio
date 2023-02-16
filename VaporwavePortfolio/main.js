@@ -19,7 +19,7 @@ const sizes = {
 const textureLoader = new THREE.TextureLoader();
 // Load a texture from a given path using the texture loader
 const gridTexture = textureLoader.load('./grid.png');
-
+const terrainTexture = textureLoader.load('./displacementmap.png')
 
 // Objects
 //const geometry = new THREE.PlaneGeometry(1, 2,24,24);
@@ -27,7 +27,11 @@ const gridTexture = textureLoader.load('./grid.png');
 const geometry = new PlaneGeometry(1,2,24,24);
 const material = new THREE.MeshStandardMaterial({
   color:  0x94167F,
-  map: gridTexture
+  map: gridTexture,
+  // Add the displacement map / height map to the material
+  displacementMap: terrainTexture,
+  // Tweak the displacement scale to adjust the "intensity" of the terrain
+  displacementScale: 0.4,
 });
 
 
