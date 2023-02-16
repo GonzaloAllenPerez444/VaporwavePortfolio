@@ -95,6 +95,7 @@ const tick = () => {
   controls.update();
    
   //geometry.rotateZ(0.01);
+  plane.position.z += 0.01
 
   // Update the rendered scene
   renderer.render(scene, camera);
