@@ -1,8 +1,8 @@
 import './style.css';
 
 import * as THREE from 'three';
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { TorusGeometry } from 'three';
+import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
+import { SphereGeometry, TorusGeometry } from 'three';
 
 
 const scene = new THREE.Scene();
@@ -41,11 +41,11 @@ const camera = new THREE.PerspectiveCamera(
    20
 );
 
-/*
+
 //CONTROLS (Eventually)
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-*/
+
 
 const renderer = new THREE.WebGL1Renderer({
   canvas:canvas,
@@ -59,8 +59,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 const tick = () => {
   // Update controls
-  //controls.update();
-
+  controls.update();
+ //geometry.rotation.x += 0.01;
   // Update the rendered scene
   renderer.render(scene, camera);
 
