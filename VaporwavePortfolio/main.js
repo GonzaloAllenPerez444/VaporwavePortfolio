@@ -14,15 +14,20 @@ const sizes = {
   height: window.innerHeight,
 };
 
+//TEXTTURES
+
+const textureLoader = new THREE.TextureLoader();
+// Load a texture from a given path using the texture loader
+const gridTexture = textureLoader.load('./grid.png');
+
 
 // Objects
-
-
 //const geometry = new THREE.PlaneGeometry(1, 2,24,24);
 //const geometry = new TorusGeometry(10,3,16,100);
 const geometry = new PlaneGeometry(1,2);
 const material = new THREE.MeshBasicMaterial({
   color:  0xFF6347,
+  map: gridTexture
 });
 
 
@@ -79,7 +84,7 @@ const tick = () => {
   // Update controls
   controls.update();
    
-  geometry.rotateZ(0.01);
+  //geometry.rotateZ(0.01);
 
   // Update the rendered scene
   renderer.render(scene, camera);
