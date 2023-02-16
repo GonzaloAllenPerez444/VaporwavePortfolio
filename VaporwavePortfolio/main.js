@@ -24,7 +24,7 @@ const gridTexture = textureLoader.load('./grid.png');
 // Objects
 //const geometry = new THREE.PlaneGeometry(1, 2,24,24);
 //const geometry = new TorusGeometry(10,3,16,100);
-const geometry = new PlaneGeometry(1,2);
+const geometry = new PlaneGeometry(1,2,24,24);
 const material = new THREE.MeshStandardMaterial({
   color:  0x94167F,
   map: gridTexture
