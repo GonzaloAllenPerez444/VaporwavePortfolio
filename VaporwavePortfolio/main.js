@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { SphereGeometry, TorusGeometry } from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry } from 'three';
 
 
 const scene = new THREE.Scene();
@@ -19,7 +19,8 @@ const sizes = {
 
 
 //const geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
-const geometry = new TorusGeometry(10,3,16,100);
+//const geometry = new TorusGeometry(10,3,16,100);
+const geometry = new PlaneGeometry(10,10);
 const material = new THREE.MeshBasicMaterial({
   color:  0xFF6347,
 });
