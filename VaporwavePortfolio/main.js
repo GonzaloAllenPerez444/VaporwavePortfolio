@@ -2,10 +2,11 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { PlaneGeometry, SphereGeometry, TorusGeometry } from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock} from 'three';
 
 
 const scene = new THREE.Scene();
+const clock = new THREE.Clock();
 
 const canvas = document.querySelector('#bg');
 // Sizes
@@ -34,13 +35,31 @@ const material = new THREE.MeshStandardMaterial({
   displacementScale: 0.4,
 });
 
+const material2 = new THREE.MeshStandardMaterial({
+  color:  0xF153CB4,//0xE93479,
+  map: gridTexture,
+  // Add the displacement map / height map to the material
+  displacementMap: terrainTexture,
+  // Tweak the displacement scale to adjust the "intensity" of the terrain
+  displacementScale: 0.4,
+});
 
 const plane = new THREE.Mesh(geometry, material);
 plane.rotation.x = -Math.PI * 0.5;
 plane.position.y = 0.0;
 plane.position.z = 0.15;
 
+const plane2 = new THREE.Mesh(geometry, material2);
+plane2.rotation.x = -Math.PI * 0.5;
+plane2.position.y = 0.0;
+plane2.position.z = 1.85;//1.85; // 0.15 - 2 (the length of the first plane)
+
+
 scene.add(plane);
+scene.add(plane2);
+
+
+
 
 //CAMERA
 const camera = new THREE.PerspectiveCamera(
@@ -52,8 +71,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 camera.position.x = 0;
-camera.position.y = 0.06;
-camera.position.z = 1.1;
+camera.position.y = 0.1//0.06;
+camera.position.z = 0.4//1.1;
 
 
 //LIGHT
@@ -91,11 +110,14 @@ window.addEventListener("resize", () => {
 });
 
 const tick = () => {
+   const elapsedTime = clock.getElapsedTime();
+
   // Update controls
   controls.update();
    
   //geometry.rotateZ(0.01);
-  plane.position.z += 0.01
+  plane.position.z = -1 * (elapsedTime * 0.15) % 2;
+  plane2.position.z = -1 * (((elapsedTime * 0.15) % 2)- 2);
 
   // Update the rendered scene
   renderer.render(scene, camera);
