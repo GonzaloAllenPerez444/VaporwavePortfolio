@@ -18,9 +18,9 @@ const sizes = {
 // Objects
 
 
-//const geometry = new THREE.PlaneGeometry(1, 2, 24, 24);
+//const geometry = new THREE.PlaneGeometry(1, 2,24,24);
 //const geometry = new TorusGeometry(10,3,16,100);
-const geometry = new PlaneGeometry(10,10);
+const geometry = new PlaneGeometry(1,2);
 const material = new THREE.MeshBasicMaterial({
   color:  0xFF6347,
 });
@@ -42,6 +42,9 @@ const camera = new THREE.PerspectiveCamera(
    20
 );
 
+camera.position.x = 0;
+camera.position.y = 0.06;
+camera.position.z = 1.1;
 
 //CONTROLS (Eventually)
 const controls = new OrbitControls(camera, canvas);
@@ -62,7 +65,7 @@ const tick = () => {
   // Update controls
   controls.update();
    
-  geometry.rotateX(0.01);
+  //geometry.rotateX(0.01);
 
   // Update the rendered scene
   renderer.render(scene, camera);
