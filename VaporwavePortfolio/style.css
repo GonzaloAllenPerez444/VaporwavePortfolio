@@ -5,6 +5,10 @@ canvas {
 }
 main {
   position: absolute;
-  font-size: 70px;
+  font-size: 100px;
+  color: white;
   
+}
+#space {
+  height: 500vh;
 }
