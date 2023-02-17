@@ -73,7 +73,7 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.x = 0;
 camera.position.y = 0.1//0.06;
-camera.position.z = 2.15//1.1;
+camera.position.z = 2.3//2.15//1.1;
 
 
 //LIGHT
