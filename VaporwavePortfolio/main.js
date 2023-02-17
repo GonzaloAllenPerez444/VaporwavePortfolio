@@ -109,26 +109,30 @@ window.addEventListener("resize", () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
+const moveCamera = () => {
+  camera.position.z += 0.01
+}
+
 const tick = () => {
    const elapsedTime = clock.getElapsedTime();
 
   // Update controls
-  controls.update();
+  //controls.update();
+  document.onscroll = moveCamera
    
   //geometry.rotateZ(0.01);
   //plane.position.z = -1 * (elapsedTime * 0.15) % 2;
   //plane2.position.z = -1 * (((elapsedTime * 0.15) % 2) - 1.85);
   //plane2.position.z = 1.85
   // Update the rendered scene
-  plane.position.z = 3 - (elapsedTime * 0.15) % 2;
-  plane2.position.z = 4 - (elapsedTime * 0.15) % 2;
+  //plane.position.z = 3 - (elapsedTime * 0.15) % 2;
+  //plane2.position.z = 4 - (elapsedTime * 0.15) % 2;
   //maybe an if statement to manually move plane1 behind plane2?
 
   //plane.position.z = (((elapsedTime * 0.15) % 2 )+ 3);
   //if (plane.position.z > 0) {plane.position.z -= 0.01}
   
 
-  
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
@@ -136,5 +140,7 @@ const tick = () => {
   
 };
 
+
 // Calling tick will initiate the rendering of the scene
-tick();
+tick(); //don't actually think we need to animate it with frames lol
+
