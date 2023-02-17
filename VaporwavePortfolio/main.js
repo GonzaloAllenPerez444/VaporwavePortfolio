@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock} from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog} from 'three';
 
 
 const scene = new THREE.Scene();
@@ -20,7 +20,7 @@ const sizes = {
 const textureLoader = new THREE.TextureLoader();
 // Load a texture from a given path using the texture loader
 const gridTexture = textureLoader.load('./grid.png');
-const terrainTexture = textureLoader.load('./displacementmap.png')
+const terrainTexture = textureLoader.load('./displacementmapSmall.png')
 
 // Objects
 //const geometry = new THREE.PlaneGeometry(1, 2,24,24);
@@ -47,16 +47,17 @@ const material2 = new THREE.MeshStandardMaterial({
 const plane = new THREE.Mesh(geometry, material);
 plane.rotation.x = -Math.PI * 0.5;
 plane.position.y = 0.0;
-plane.position.z = 0.15;
+plane.position.z = 3.0//0.15;
 
-const plane2 = new THREE.Mesh(geometry, material2);
+const plane2 = new THREE.Mesh(geometry, material);
 plane2.rotation.x = -Math.PI * 0.5;
 plane2.position.y = 0.0;
-plane2.position.z = 1.85;//1.85; // 0.15 - 2 (the length of the first plane)
+plane2.position.z = 5;//1.85; // 0.15 - 2 (the length of the first plane) WHY IS THIS NUMBER IRRELEVANT?
 
 
 scene.add(plane);
 scene.add(plane2);
+
 
 
 
@@ -72,13 +73,12 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.x = 0;
 camera.position.y = 0.1//0.06;
-camera.position.z = 0.4//1.1;
+camera.position.z = 2.15//1.1;
 
 
 //LIGHT
 const ambientLight = new THREE.AmbientLight("#ffffff", 10);
 scene.add(ambientLight);
-
 
 //CONTROLS (Eventually)
 const controls = new OrbitControls(camera, canvas);
@@ -116,10 +116,19 @@ const tick = () => {
   controls.update();
    
   //geometry.rotateZ(0.01);
-  plane.position.z = -1 * (elapsedTime * 0.15) % 2;
-  plane2.position.z = -1 * (((elapsedTime * 0.15) % 2)- 2);
-
+  //plane.position.z = -1 * (elapsedTime * 0.15) % 2;
+  //plane2.position.z = -1 * (((elapsedTime * 0.15) % 2) - 1.85);
+  //plane2.position.z = 1.85
   // Update the rendered scene
+  plane.position.z = 3 - (elapsedTime * 0.15) % 2;
+  plane2.position.z = 4 - (elapsedTime * 0.15) % 2;
+  //maybe an if statement to manually move plane1 behind plane2?
+
+  //plane.position.z = (((elapsedTime * 0.15) % 2 )+ 3);
+  //if (plane.position.z > 0) {plane.position.z -= 0.01}
+  
+
+  
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
