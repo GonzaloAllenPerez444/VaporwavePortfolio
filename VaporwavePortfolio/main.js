@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog} from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap} from 'three';
 
 
 const scene = new THREE.Scene();
@@ -81,8 +81,8 @@ const ambientLight = new THREE.AmbientLight("#ffffff", 10);
 scene.add(ambientLight);
 
 //CONTROLS (Eventually)
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
+//const controls = new OrbitControls(camera, canvas);
+//controls.enableDamping = true;
 
 
 const renderer = new THREE.WebGL1Renderer({
@@ -110,7 +110,18 @@ window.addEventListener("resize", () => {
 });
 
 const moveCamera = () => {
-  camera.position.z += 0.01
+  //camera.position.z += 0.01
+
+  
+  const top = Math.abs( document.body.getBoundingClientRect().top);
+  
+  const bottom = document.getElementById("space").scrollHeight / 1.17; //this is about 1.17 * maximum height we can scroll to
+  
+  //console.log("top is " +top +" bottom is " + bottom + " and camera position is " + camera.position.z);
+  let difference = top - bottom;
+  console.log(difference);
+  camera.position.z =2.3 +  top * 0.0001;
+  
 }
 
 const tick = () => {
