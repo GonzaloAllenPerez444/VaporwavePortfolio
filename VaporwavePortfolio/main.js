@@ -4,6 +4,9 @@ import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
 import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap} from 'three';
 
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
 
 const scene = new THREE.Scene();
 const clock = new THREE.Clock();
@@ -118,8 +121,6 @@ const moveCamera = () => {
   const bottom = document.getElementById("space").scrollHeight / 1.17; //this is about 1.17 * maximum height we can scroll to
   
   //console.log("top is " +top +" bottom is " + bottom + " and camera position is " + camera.position.z);
-  let difference = top - bottom;
-  console.log(difference);
   camera.position.z =2.3 +  top * 0.0001;
   
 }
