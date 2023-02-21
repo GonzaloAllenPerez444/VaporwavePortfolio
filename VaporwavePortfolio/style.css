@@ -12,3 +12,7 @@ main {
 #space {
   height: 500vh;
 }
+#header{
+  content: flex;
+  font-family: 'Clicker Script',
+}
