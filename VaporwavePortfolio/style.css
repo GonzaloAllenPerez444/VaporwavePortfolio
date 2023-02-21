@@ -1,3 +1,6 @@
+
+
+
 canvas {
   position: fixed;
   top:0;
@@ -13,6 +16,10 @@ main {
   height: 500vh;
 }
 #header{
-  content: flex;
-  font-family: 'Clicker Script',
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace
+}
+
+#subheader {
+  
 }
