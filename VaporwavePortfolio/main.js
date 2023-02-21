@@ -26,8 +26,19 @@ const gridTexture = textureLoader.load('./grid.png');
 const terrainTexture = textureLoader.load('./displacementmapSmall.png')
 
 // Objects
-//const geometry = new THREE.PlaneGeometry(1, 2,24,24);
-//const geometry = new TorusGeometry(10,3,16,100);
+
+const cirlceGeo = new THREE.CircleGeometry( 3, 32 );
+const materialBasic = new THREE.MeshBasicMaterial( { color: 0xF9AC53 } );
+const circle = new THREE.Mesh( cirlceGeo, materialBasic );
+circle.position.x += 0.2; //left and right position of the
+
+const meteorGeo = new THREE.CircleGeometry(0.5, 32)
+const meteor = new THREE.Mesh(meteorGeo,materialBasic);
+meteor.position.z = 3;
+meteor.position.y = 0.2;
+
+
+scene.add( circle );
 const geometry = new PlaneGeometry(1,2,24,24);
 const material = new THREE.MeshStandardMaterial({
   color:  0x94167F,
@@ -122,6 +133,7 @@ const moveCamera = () => {
   
   //console.log("top is " +top +" bottom is " + bottom + " and camera position is " + camera.position.z);
   camera.position.z =2.3 +  top * 0.0001;
+  console.log(camera.position.x, camera.position.y,camera.position.z);
   
 }
 
