@@ -17,7 +17,13 @@ main {
 }
 #header{
   text-align: center;
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Courier New', Courier, monospace;
+  width: 50%;
+  margin-left:25%;
+  max-height: 15%;
+  margin-top: 5%;
+
+  
 }
 
 #subheader {
