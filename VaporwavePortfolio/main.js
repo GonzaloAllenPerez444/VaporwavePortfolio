@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap} from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap, Loader} from 'three';
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
@@ -21,24 +21,17 @@ const sizes = {
 //TEXTTURES
 
 const textureLoader = new THREE.TextureLoader();
+
 // Load a texture from a given path using the texture loader
 const gridTexture = textureLoader.load('./grid.png');
 const terrainTexture = textureLoader.load('./displacementmapSmall.png')
-
+//const suntexture = textureLoader.load('./sunTexture.png');
 // Objects
 
-const cirlceGeo = new THREE.CircleGeometry( 3, 32 );
-const materialBasic = new THREE.MeshBasicMaterial( { color: 0xF9AC53 } );
-const circle = new THREE.Mesh( cirlceGeo, materialBasic );
-circle.position.x += 0.2; //left and right position of the
-
-const meteorGeo = new THREE.CircleGeometry(0.5, 32)
-const meteor = new THREE.Mesh(meteorGeo,materialBasic);
-meteor.position.z = 3;
-meteor.position.y = 0.2;
 
 
-scene.add( circle );
+
+
 const geometry = new PlaneGeometry(1,2,24,24);
 const material = new THREE.MeshStandardMaterial({
   color:  0x94167F,
@@ -57,6 +50,26 @@ const material2 = new THREE.MeshStandardMaterial({
   // Tweak the displacement scale to adjust the "intensity" of the terrain
   displacementScale: 0.4,
 });
+
+const cirlceGeo = new THREE.CircleGeometry( 3, 32 );
+
+
+const materialStandard2= new THREE.MeshBasicMaterial( {
+map: textureLoader.load('./sunTexture.jpg') } );//0xF9AC53 
+
+
+const circle = new THREE.Mesh( cirlceGeo, materialStandard2 );
+circle.position.x += 0.1; //left and right position of the
+
+scene.add(circle);
+
+/*
+const meteorGeo = new THREE.CircleGeometry(0.5, 32)
+const meteor = new THREE.Mesh(meteorGeo,materialBasic);
+meteor.position.z = 3;
+meteor.position.y = 0.2;
+
+scene.add(meteor); */
 
 const plane = new THREE.Mesh(geometry, material);
 plane.rotation.x = -Math.PI * 0.5;
@@ -133,7 +146,7 @@ const moveCamera = () => {
   
   //console.log("top is " +top +" bottom is " + bottom + " and camera position is " + camera.position.z);
   camera.position.z =2.3 +  top * 0.0001;
-  console.log(camera.position.x, camera.position.y,camera.position.z);
+  //console.log(camera.position.x, camera.position.y,camera.position.z);
   
 }
 
