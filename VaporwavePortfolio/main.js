@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from 'three';
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
-import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap, Loader} from 'three';
+import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap, Loader,} from 'three';
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
@@ -25,12 +25,14 @@ const textureLoader = new THREE.TextureLoader();
 // Load a texture from a given path using the texture loader
 const gridTexture = textureLoader.load('./grid.png');
 const terrainTexture = textureLoader.load('./displacementmapSmall.png')
+
 //const suntexture = textureLoader.load('./sunTexture.png');
 // Objects
 
 
 
 
+const basic = new THREE.MeshBasicMaterial({color:0x300350 })
 
 const geometry = new PlaneGeometry(1,2,24,24);
 const material = new THREE.MeshStandardMaterial({
@@ -63,13 +65,14 @@ circle.position.x += 0.1; //left and right position of the
 
 scene.add(circle);
 
-/*
-const meteorGeo = new THREE.CircleGeometry(0.5, 32)
-const meteor = new THREE.Mesh(meteorGeo,materialBasic);
-meteor.position.z = 3;
-meteor.position.y = 0.2;
 
-scene.add(meteor); */
+const meteorGeo = new THREE.PlaneGeometry(0.1, 0.1)
+const meteor = new THREE.Mesh(meteorGeo,basic);
+meteor.position.z = 2.5;
+meteor.position.y = 0.2;
+meteor.position.x = -0.2
+
+scene.add(meteor); 
 
 const plane = new THREE.Mesh(geometry, material);
 plane.rotation.x = -Math.PI * 0.5;
@@ -84,8 +87,6 @@ plane2.position.z = 5;//1.85; // 0.15 - 2 (the length of the first plane) WHY IS
 
 scene.add(plane);
 scene.add(plane2);
-
-
 
 
 
