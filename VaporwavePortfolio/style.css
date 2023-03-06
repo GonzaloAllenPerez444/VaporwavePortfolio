@@ -17,18 +17,25 @@ main {
 #resume {
   
   margin-top: 100vh;
-  margin-left: 20%;
+  margin-left: 10%;
 }
 
 #links {
-margin-top: 50vh;
-}
-#socials{
-  color:white;
-}
+margin-top: 100vh;
+margin-left: 60%;
+align-items: left;
+width: 30%;
 
+}
+#list {
+  margin-top: 20%;
+  display: flex;
+  justify-content: space-between;
+  
+  
+}
 #space {
-  height: 400vh; 
+  height: 270vh; 
 }
 #header{
   text-align: center;
@@ -40,6 +47,7 @@ margin-top: 50vh;
 
   
 }
+
 
 .notes{
   height: 500vh;
