@@ -47,10 +47,6 @@ const material = new THREE.MeshStandardMaterial({
 const material2 = new THREE.MeshStandardMaterial({
   color:  0xF153CB4,//0xE93479,
   map: gridTexture,
-  // Add the displacement map / height map to the material
-  displacementMap: terrainTexture,
-  // Tweak the displacement scale to adjust the "intensity" of the terrain
-  displacementScale: 0.4,
 });
 
 const cirlceGeo = new THREE.CircleGeometry( 3, 32 );
@@ -66,10 +62,10 @@ circle.position.x += 0.1; //left and right position of the
 scene.add(circle);
 
 
-const meteorGeo = new THREE.PlaneGeometry(0.1, 0.1)
-const meteor = new THREE.Mesh(meteorGeo,basic);
-meteor.position.z = 2.5;
-meteor.position.y = 0.2;
+const meteorGeo = new THREE.IcosahedronGeometry(0.1);
+const meteor = new THREE.Mesh(meteorGeo,material2);
+meteor.position.z = 2.3;
+meteor.position.y = 0.4;
 meteor.position.x = -0.2
 
 scene.add(meteor); 
@@ -158,18 +154,9 @@ const tick = () => {
   //controls.update();
   document.onscroll = moveCamera
    
-  //geometry.rotateZ(0.01);
-  //plane.position.z = -1 * (elapsedTime * 0.15) % 2;
-  //plane2.position.z = -1 * (((elapsedTime * 0.15) % 2) - 1.85);
-  //plane2.position.z = 1.85
-  // Update the rendered scene
-  //plane.position.z = 3 - (elapsedTime * 0.15) % 2;
-  //plane2.position.z = 4 - (elapsedTime * 0.15) % 2;
-  //maybe an if statement to manually move plane1 behind plane2?
-
-  //plane.position.z = (((elapsedTime * 0.15) % 2 )+ 3);
-  //if (plane.position.z > 0) {plane.position.z -= 0.01}
-  
+    meteor.rotation.z += 0.01;
+    meteor.rotation.x += 0.01;
+    meteor.rotation.y += 0.01;
 
   renderer.render(scene, camera);
 

@@ -10,13 +10,25 @@ main {
   position: absolute;
   font-size: 100px;
   color: white;
+  font-family: 'Courier New';
   
 }
 
+#resume {
+  
+  margin-top: 100vh;
+  margin-left: 20%;
+}
 
+#links {
+margin-top: 50vh;
+}
+#socials{
+  color:white;
+}
 
 #space {
-  height: 500vh; 
+  height: 400vh; 
 }
 #header{
   text-align: center;
