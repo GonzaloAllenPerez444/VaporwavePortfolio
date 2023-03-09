@@ -1,7 +1,7 @@
 import './style.css';
 
-import * as THREE from 'three';
-import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "https://unpkg.com/three@0.150.1/build/three.module.js";//'three';
+//import { OrbitControls } from "./node_modules/three/examples/jsm/controls/OrbitControls.js";
 import { PlaneGeometry, SphereGeometry, TorusGeometry , Clock, Fog, VSMShadowMap, Loader,} from 'three';
 
 window.onbeforeunload = function () {
